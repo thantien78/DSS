@@ -1,0 +1,27 @@
+.dashboard {
+    width: 20%;
+    height: 100vh;
+    cursor: auto;
+    z-index: 999;
+    position: absolute;
+    background: #FFFFFF;
+    transform: translateX(-100%);
+    transition: all .6s ease-in-out;
+    box-shadow:  20px 20px 30px #bebebe,
+             -20px -20px 30px #ffffff;
+}
+.inactive {
+    transform: translateX(0%);
+    transition: all .6s ease-in-out;
+}
+.dashboard-arrow {
+    height: 50px;
+    width: 30px;
+    cursor: pointer;
+    background: #FFFFFF;
+    position: absolute;
+    right: -1.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 20%;
+}

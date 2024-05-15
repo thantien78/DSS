@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: white;
+    font-family: Sans-Serif;
+    text-align: center;
+    font-size: 13px;
+  }
+
+.leaflet-top{ display: contents; } 
+
+.logo{
+    padding: 2px;
+    padding-right: 20px;
+}
+
+.menu{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.menuItem{
+    padding: 8px;
+    margin: 5px;
+}
+    
+.active {
+    color: white !important;
+    background-color: #009A7D;
+    border-radius: 5px;
+}
+
+.actionButton{
+    margin: 0px;
+    font-size: 11px !important;
+    width: 80px;
+    height: 32px;
+}
+
+.navLeft{
+    margin: 0px;
+    padding: 2px !important;
+    text-decoration: none;
+    font-size: 12px !important;
+    color: #969696;
+}
