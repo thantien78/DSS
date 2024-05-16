@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import '../styles/MapComponent.css';
 import Loader from './Loader';
 import Dashboard from './Dashboard';
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, GeoJSON, LayersControl, Popup, ZoomControl } from 'react-leaflet';
 import { useEffect } from 'react';
-import { fetchUserData, fetchNetworks, fetchBikeStations } from '../redux/action/';
+import { fetchUserData, fetchDrains, fetchWaterLevel, fetchRains } from '../redux/action/';
 import { useDispatch, useSelector } from 'react-redux'
-import { bikeNetwork, person, stationIcon } from './Icons';
-import RoutingMachine from './RoutingMachine';
+
+import { drainIcon, waterlevelIcon, rainIcon } from './Icons';
+
+//load data
+import drainData from '../data/cong.json' 
+import waterlevelData from '../data/trammucnuoc.json'
+import rainData from '../data/trammua.json'
 
 const MapComponent = () => {
 
@@ -16,25 +21,49 @@ const MapComponent = () => {
     const [latitude, setLatitude] = useState(0) //10.254260
     const [longitude, setLongitude] = useState(0) //105.972298
 
-    const [bikeLat, setBikeLat] = useState(null)
-    const [bikeLong, setBikeLong] = useState(null)
-    const [checkBikeAdress, setCheckBikeAdress] = useState(false)
+    //const [bikeLat, setBikeLat] = useState(null)
+    //const [bikeLong, setBikeLong] = useState(null)
+
     const [checkCords, setCheckCords] = useState(false)
 
     //const countryCode = useSelector((state) => state.countryCode)
-    //const bikeNetworks = useSelector((state) => state.bikeNetworks.networks) || []
-    const isLightMode = useSelector((state) => state.isLightMode)
-    //const getStations = useSelector((state) => state.getStations)
-    //const stations = useSelector((state) => state.bikeStations.network?.stations)
 
-    //const bikes = bikeNetworks.filter((network) => network.location.country === countryCode)
+    //const isLightMode = useSelector((state) => state.isLightMode)
+    const showDrains = useSelector((state) => state.showDrains)
+    const showWaterLevel = useSelector((state) => state.showWaterLevel)
+    const showRains = useSelector((state) => state.showRains)
 
-    const setBikeAdress = (station) => {
-      setBikeLat(station.latitude)
-      setBikeLong(station.longitude)
+    function onEachFeature(feature, layer) {
+      layer.on('mouseover', function (e) {
+    
+        getInfo(feature, layer);
+    
+        this.openPopup();
+    
+        // style
+        this.setStyle({
+          fillColor: '#eb4034',
+          weight: 2,
+          color: '#eb4034',
+          fillOpacity: 0.7,
+        });
+      });
+      layer.on('mouseout', function () {
+        this.closePopup();
+        // style
+        this.setStyle({
+          fillColor: '#3388ff',
+          weight: 2,
+          color: '#3388ff',
+          fillOpacity: 0.2,
+        });
+      });
+    }
 
-      setCheckBikeAdress(false)
-      setCheckBikeAdress(true)
+    function getInfo(feature, layer) {
+      if (feature.properties && feature.properties.nazwa) {
+        layer.bindPopup(feature.properties.nazwa);
+      }
     }
 
     useEffect(() => {
@@ -49,22 +78,44 @@ const MapComponent = () => {
 
     useEffect(async () => {
        await dispatch(fetchUserData())
-       await dispatch(fetchNetworks())
+       //await dispatch(fetchNetworks())
+       //await dispatch(fetchDrains())
+       //await dispatch(fetchWaterLevel())
+       //await dispatch(fetchRains())
     }, [])
 
   return (
       !checkCords ? <Loader /> :
-    <MapContainer center={VIN_ANGELES_CENTER} zoom={15} zoomControl={false}>
+    <MapContainer preferCanvas center={VIN_ANGELES_CENTER} zoom={16} zoomControl={false}>
       <Dashboard latitude={VIN_ANGELES_CENTER.latitude} longitude={VIN_ANGELES_CENTER.longitude} />
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        className={!isLightMode ? 'default-map' : 'map-tiles'}
-      />
-      <Marker icon={person} position={[latitude, longitude]}></Marker>
+      <LayersControl position="topright">        
+        <LayersControl.BaseLayer checked name="GoogleMap">
+          <TileLayer
+              url="https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+              subdomains={["mt1", "mt2", "mt3"]}
+            />
+        </LayersControl.BaseLayer>      
+        <LayersControl.BaseLayer name="OpenStreetMap">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        </LayersControl.BaseLayer>
+        <LayersControl.Overlay name="Trạm cống" checked={showDrains}>
+            <GeoJSON data={drainData} onEachFeature={onEachFeature}/>
+          </LayersControl.Overlay>
+        <LayersControl.Overlay name="Trạm mực nước" checked={showWaterLevel}>
+            <GeoJSON data={waterlevelData} onEachFeature={onEachFeature}/>
+          </LayersControl.Overlay>
 
+        <LayersControl.Overlay name="Trạm mưa" checked={showRains}>
+          <GeoJSON data={rainData} onEachFeature={onEachFeature}/>
+        </LayersControl.Overlay>
+      </LayersControl>
       
-        </MapContainer>
+      <ZoomControl position='topright'/>
+      
+    </MapContainer>
   
   )
 }

@@ -7,11 +7,14 @@ import { rootReducer } from '../reducer';
 
 export const initialState = {
     countryCode: null,
-    bikeNetworks:{},
-    bikeStations: {},
+    drains:{},
+    waterlevel:{},
+    rains:{},
+  
     isLoading: true,
-    getStations: false,
-    isLightMode: true
+    showDrains: false,
+    showWaterLevel: false,
+    showRains: false,
 }
 
 const persistConfig = {

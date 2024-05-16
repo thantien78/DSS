@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "cong",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "ID": 62, "X_UTM": 606159.191, "Y_UTM": 1133372.013, "LAT": 10.251564, "LONG": 105.969258 }, "geometry": { "type": "Point", "coordinates": [ 105.969258, 10.251564 ] } },
+{ "type": "Feature", "properties": { "ID": 75, "X_UTM": 607076.272, "Y_UTM": 1133463.196, "LAT": 10.252165, "LONG": 105.977628 }, "geometry": { "type": "Point", "coordinates": [ 105.977628, 10.252165 ] } }
+]
+}

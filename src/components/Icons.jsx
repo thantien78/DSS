@@ -1,24 +1,24 @@
 import L from 'leaflet'
 import '../styles/Icon.css'
-import bikePointer from "../assets/images/bikePointer.png"
-import personPointer from "../assets/images/personPointer.png"
-import stationPointer from '../assets/images/stationPointer.png'
+import drainPointer from "../assets/images/drainPointer.png"
+import waterlevelPointer from "../assets/images/waterlevelPointer.png"
+import rainPointer from '../assets/images/rainPointer.png'
 
-const bikeNetwork = new L.Icon({
-    iconUrl: bikePointer,
+const drainIcon = new L.Icon({
+    iconUrl: drainPointer,
     iconSize: [50, 50],
     popupAnchor:  [1, -10],
 })
 
-const person = new L.Icon({
-    iconUrl: personPointer,
+const waterlevelIcon = new L.Icon({
+    iconUrl: waterlevelPointer,
     iconSize: [40, 40],
     popupAnchor:  [-3, -76]
 })
 
-const stationIcon = new L.Icon({
-    iconUrl: stationPointer,
+const rainIcon = new L.Icon({
+    iconUrl: rainPointer,
     iconSize: [17, 17],
     className: 'pulse circle',
 }) 
-export { bikeNetwork, person, stationIcon }
+export { drainIcon, waterlevelIcon, rainIcon }

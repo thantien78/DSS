@@ -1,5 +1,6 @@
 import { initialState } from "../store";
-import { FETCH_USER_DATA,  FETCH_NETWORKS, FETCH_STATIONS, TOGGLE_MODE } from "../action";
+import { FETCH_USER_DATA,  FETCH_DRAINS_DATA_JSON, FETCH_WATERLEVEL_DATA_JSON, FETCH_RAINS_DATA_JSON
+       , TOGGLE_DRAINS, TOGGLE_WATERLEVEL, TOGGLE_RAINS } from "../action";
 
 export const rootReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -9,24 +10,45 @@ export const rootReducer = (state = initialState, action) => {
                 countryCode: action.payload,
                 isLoading: false,
             }
-        case FETCH_NETWORKS: 
+        case FETCH_DRAINS_DATA_JSON: 
             return {
                 ...state,
                 isLoading: false,
-                bikeNetworks: action.payload,
+                drains: action.payload,
             }
-        case FETCH_STATIONS:
+
+        case FETCH_WATERLEVEL_DATA_JSON: 
             return {
                 ...state,
                 isLoading: false,
-                bikeStations: action.payload,
-                getStations: true,
+                waterlevel: action.payload,
             }
-        case TOGGLE_MODE: 
+
+        case FETCH_RAINS_DATA_JSON: 
             return {
                 ...state,
-                isLightMode: !state.isLightMode
+                isLoading: false,
+                rains: action.payload,
             }
+        
+        case TOGGLE_DRAINS: 
+            return {
+                ...state,
+                showDrains: !state.showDrains
+            }
+
+        case TOGGLE_WATERLEVEL: 
+            return {
+                ...state,
+                showWaterLevel: !state.showWaterLevel
+            }
+
+        case TOGGLE_RAINS: 
+            return {
+                ...state,
+                showRains: !state.showRains
+            }
+            
         default: {
             return {
                 ...state

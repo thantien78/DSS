@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/Dashboard.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleMode } from '../redux/action'
+import { toggleDrains, toggleWaterLevel, toggleRains } from '../redux/action'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import Search from '@mui/icons-material/Search';
@@ -17,13 +17,9 @@ function Dashboard({latitude, longitude}) {
   const dispatch = useDispatch()
 
   const isLightMode = useSelector((state) => state.isLightMode)
-  const networks = useSelector((state) => state.bikeNetworks.networks)
-  
-  
-
-
+  //const networks = useSelector((state) => state.drains.networks)
   const [isActive, setIsActive] = useState(false)
-  
+
   const SideBar = () => {  
     return (
       <>      
@@ -84,13 +80,13 @@ function Dashboard({latitude, longitude}) {
           </div>
           <ul class="sidebar-nav">
             <li class="nav-item">
-              <Button className='navLeft' variant="link"><Message/> Trạm cống</Button>
+              <Button className='navLeft' variant="link" onClick={() => {dispatch(toggleDrains())}}><Message/> Trạm cống</Button>
             </li>
             <li class="nav-item">
-              <Button className='navLeft' variant="link"><Message/> Trạm mực nước</Button>
+              <Button className='navLeft' variant="link" onClick={() => {dispatch(toggleWaterLevel())}}><Message/> Trạm mực nước</Button>
             </li>
             <li class="nav-item">
-              <Button className='navLeft' variant="link"><Message/> Trạm mưa</Button>
+              <Button className='navLeft' variant="link" onClick={() => {dispatch(toggleRains())}}><Message/> Trạm mưa</Button>
             </li>
             <li class="nav-item nav-group show">
               <CaretDown/> Hiện thêm

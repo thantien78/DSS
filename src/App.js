@@ -21,12 +21,12 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-              <Nav.Link activeClassName="active" href="#home">Trang chủ</Nav.Link>
-              <Nav.Link activeClassName="active" href="#project">Dự án</Nav.Link>
-              <Nav.Link activeClassName="active" href="#training">Đào tạo</Nav.Link>
-              <Nav.Link activeClassName="active" href="#study">Nghiên cứu</Nav.Link>
-              <Nav.Link activeClassName="active" href="#aboutus">Chúng tôi</Nav.Link>
-              <Nav.Link activeClassName="active" href="#contact">Liên hệ</Nav.Link>
+              <Nav.Link activeclassname="active" href="#home">Trang chủ</Nav.Link>
+              <Nav.Link activeclassname="active" href="#project">Dự án</Nav.Link>
+              <Nav.Link activeclassname="active" href="#training">Đào tạo</Nav.Link>
+              <Nav.Link activeclassname="active" href="#study">Nghiên cứu</Nav.Link>
+              <Nav.Link activeclassname="active" href="#aboutus">Chúng tôi</Nav.Link>
+              <Nav.Link activeclassname="active" href="#contact">Liên hệ</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
