@@ -21,13 +21,13 @@ const MapComponent = () => {
     const [checkBikeAdress, setCheckBikeAdress] = useState(false)
     const [checkCords, setCheckCords] = useState(false)
 
-    const countryCode = useSelector((state) => state.countryCode)
-    const bikeNetworks = useSelector((state) => state.bikeNetworks.networks) || []
+    //const countryCode = useSelector((state) => state.countryCode)
+    //const bikeNetworks = useSelector((state) => state.bikeNetworks.networks) || []
     const isLightMode = useSelector((state) => state.isLightMode)
-    const getStations = useSelector((state) => state.getStations)
-    const stations = useSelector((state) => state.bikeStations.network?.stations)
+    //const getStations = useSelector((state) => state.getStations)
+    //const stations = useSelector((state) => state.bikeStations.network?.stations)
 
-    const bikes = bikeNetworks.filter((network) => network.location.country === countryCode)
+    //const bikes = bikeNetworks.filter((network) => network.location.country === countryCode)
 
     const setBikeAdress = (station) => {
       setBikeLat(station.latitude)
@@ -63,42 +63,7 @@ const MapComponent = () => {
       />
       <Marker icon={person} position={[latitude, longitude]}></Marker>
 
-      { 
-        bikes.map((bike) => (
-          <Marker
-          key={bike.id}
-          icon={ bikeNetwork }
-          position={[bike.location.latitude, bike.location.longitude]}
-          eventHandlers={{click: () => dispatch(fetchBikeStations(bike.href))}}
-          >
-            <Popup>
-              {bike.name}
-            </Popup>
-          </Marker>
-    ))
-      }
-      {!getStations ? console.log('waiting...') :
-        stations.map((station) => (
-          <Marker
-          key={station.id}
-          icon={ stationIcon }
-          position={[station.latitude, station.longitude]}
-          eventHandlers={{click: () => setBikeAdress(station)}}
-          >
-            <Tooltip>
-              <div style={{lineHeight: '3px'}}>
-                <p className='font-weight-bold'>{station.name}</p>
-                <p>{station.extra.slots} Slots</p>
-                <p>{station.free_bikes} Bikes</p>
-              </div>
-            </Tooltip>
-          </Marker>
-        ))
-      } 
-      <ZoomControl position="topright" />
-       {
-         checkBikeAdress ?   <RoutingMachine userLat={latitude} userLong={longitude} bikeLat={bikeLat} bikeLong={bikeLong}/> : null
-       }
+      
         </MapContainer>
   
   )
