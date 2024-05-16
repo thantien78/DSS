@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/MapComponent.css';
 import Loader from './Loader';
 import Dashboard from './Dashboard';
-import { MapContainer, TileLayer, Marker, GeoJSON, LayersControl, Popup, ZoomControl } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, GeoJSON, LayersControl, FeatureGroup, Popup, ZoomControl } from 'react-leaflet';
 import { useEffect } from 'react';
 import { fetchUserData, fetchDrains, fetchWaterLevel, fetchRains } from '../redux/action/';
 import { useDispatch, useSelector } from 'react-redux'
@@ -34,35 +34,17 @@ const MapComponent = () => {
     const showRains = useSelector((state) => state.showRains)
 
     function onEachFeature(feature, layer) {
-      layer.on('mouseover', function (e) {
+      layer.on('click', function (e) {
     
         getInfo(feature, layer);
     
         this.openPopup();
-    
-        // style
-        this.setStyle({
-          fillColor: '#eb4034',
-          weight: 2,
-          color: '#eb4034',
-          fillOpacity: 0.7,
-        });
-      });
-      layer.on('mouseout', function () {
-        this.closePopup();
-        // style
-        this.setStyle({
-          fillColor: '#3388ff',
-          weight: 2,
-          color: '#3388ff',
-          fillOpacity: 0.2,
-        });
       });
     }
 
     function getInfo(feature, layer) {
-      if (feature.properties && feature.properties.nazwa) {
-        layer.bindPopup(feature.properties.nazwa);
+      if (feature.properties) {
+        layer.bindPopup("<div style='padding:5px;border:1px solid #ced4da;border-radius:5px'><div style='padding:5px;background-color:#007bff;color:white'>THÔNG TIN TRẠM</div><div>ID:"+feature.properties.ID+"</div><div>LAT:"+feature.properties.LAT+"</div><div>LONG:"+feature.properties.LONG+"</div></div>");
       }
     }
 
@@ -102,12 +84,11 @@ const MapComponent = () => {
           />
         </LayersControl.BaseLayer>
         <LayersControl.Overlay name="Trạm cống" checked={showDrains}>
-            <GeoJSON data={drainData} onEachFeature={onEachFeature}/>
-          </LayersControl.Overlay>
+          <GeoJSON data={drainData} onEachFeature={onEachFeature}/>
+        </LayersControl.Overlay>
         <LayersControl.Overlay name="Trạm mực nước" checked={showWaterLevel}>
-            <GeoJSON data={waterlevelData} onEachFeature={onEachFeature}/>
-          </LayersControl.Overlay>
-
+          <GeoJSON data={waterlevelData} onEachFeature={onEachFeature}/>
+        </LayersControl.Overlay>
         <LayersControl.Overlay name="Trạm mưa" checked={showRains}>
           <GeoJSON data={rainData} onEachFeature={onEachFeature}/>
         </LayersControl.Overlay>
