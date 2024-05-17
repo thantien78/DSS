@@ -23,92 +23,92 @@ function Dashboard({latitude, longitude}) {
   const SideBar = () => {  
     return (
       <>      
-        <div class="sidebar border-end">
-          <div class="sidebar-header">
-            <div class="row">
-              <div class="col">
+        <div className="sidebar border-end">
+          <div className="sidebar-header">
+            <div className="row">
+              <div className="col">
                 <Search/>
               </div>
-              <div class="col">
+              <div className="col">
                 Tìm kiếm vị trí
               </div>
-              <div class="col text-right">
+              <div className="col text-right">
                 <Button><Justify/></Button>
               </div>
             </div>
-            <div class="row">
-              <div class="col">
+            <div className="row">
+              <div className="col">
                 Chọn từ ngày
               </div>
             </div>
-            <div class="row">
-              <div class="col">
+            <div className="row">
+              <div className="col">
                 <Form.Control type="date" />
               </div>
             </div>
-            <div class="row">
-              <div class="col">
+            <div className="row">
+              <div className="col">
                 Chọn đến ngày
               </div>
             </div>
-            <div class="row">
-              <div class="col">
+            <div className="row">
+              <div className="col">
                   <Form.Control type="date" />
               </div>
             </div>
-            <div class="row">
-              <div class="col">
+            <div className="row">
+              <div className="col">
                 <Button className='actionButton' variant="success"><ArrowRepeat/> Run</Button>
               </div>
-              <div class="col">
+              <div className="col">
                 <Button className='actionButton' variant="secondary"><ClearAll/>Clear</Button>
               </div>
-              <div class="col">
+              <div className="col">
                 <Button className='actionButton' variant="secondary"><Restore/>Reset</Button>
               </div>
             </div>
           </div>
-          <div class="row">
-              <div class="col">
+          <div className="row">
+              <div className="col">
                 <Button variant="dark"><Plus/> Chọn loại trạm dữ liệu</Button>
               </div>
           </div>
-          <div class="row">
-              <div class="col">
+          <div className="row">
+              <div className="col">
                 Dữ liệu trạm
               </div>
           </div>
-          <ul class="sidebar-nav">
-            <li class="nav-item">
+          <ul className="sidebar-nav">
+            <li className="nav-item">
               <Button className='navLeft' variant="link" onClick={() => {dispatch(toggleDrains())}}><Message/> Trạm cống</Button>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <Button className='navLeft' variant="link" onClick={() => {dispatch(toggleWaterLevel())}}><Message/> Trạm mực nước</Button>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <Button className='navLeft' variant="link" onClick={() => {dispatch(toggleRains())}}><Message/> Trạm mưa</Button>
             </li>
-            <li class="nav-item nav-group show">
+            <li className="nav-item nav-group show">
               <CaretDown/> Hiện thêm
             </li>
           </ul>
           
-          <div class="row">
-              <div class="col">
+          <div className="row">
+              <div className="col">
                 <img src={Chart} width={300} height={200}/>
               </div>
           </div>
-          <div class="sidebar-footer border-top d-flex">
-            <div class="row">
-                <div class="col-sm-2">
+          <div className="sidebar-footer border-top d-flex">
+            <div className="row">
+                <div className="col-sm-2">
                   <img src={bgLogo} width={50} height={50}/>
                 </div>
-                <div class='col'>
+                <div className='col'>
                   <font size='5' color='#969696'> eWater</font><br/>
                   @2004 DSS Water. All rights reserved.
                 </div>
             </div>
-            <button class="sidebar-toggler" type="button"></button>
+            <button className="sidebar-toggler" type="button"></button>
           </div>
         </div>
       </>

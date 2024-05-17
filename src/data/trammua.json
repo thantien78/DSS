@@ -3,7 +3,7 @@
 "name": "trammua",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "id": 29, "X_UTM": 606320.891, "Y)UTM": 1133677.724, "LAT": 10.254202, "LONG": 105.970778 }, "geometry": { "type": "Point", "coordinates": [ 105.970778, 10.254202 ] } },
-{ "type": "Feature", "properties": { "id": 54, "X_UTM": 606788.157, "Y)UTM": 1133594.937, "LAT": 10.253474, "LONG": 105.975209 }, "geometry": { "type": "Point", "coordinates": [ 105.975209, 10.253474 ] } }
+{ "type": "Feature", "properties": { "ID": 29, "X_UTM": 606320.891, "Y_UTM": 1133677.724, "LAT": 10.254202, "LONG": 105.970778 }, "geometry": { "type": "Point", "coordinates": [ 105.970778, 10.254202 ] } },
+{ "type": "Feature", "properties": { "ID": 54, "X_UTM": 606788.157, "Y_UTM": 1133594.937, "LAT": 10.253474, "LONG": 105.975209 }, "geometry": { "type": "Point", "coordinates": [ 105.975209, 10.253474 ] } }
 ]
 }
