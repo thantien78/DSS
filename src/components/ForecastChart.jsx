@@ -5,6 +5,8 @@ function ForecastChart({chartData }) {
   return (
     <div className="chart-container">
       <Line
+        width={200}
+        height={120}
         data={chartData}
         options={{
           maintainAspectRatio: false,

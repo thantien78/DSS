@@ -33,6 +33,11 @@ body {
     border-radius: 5px;
 }
 
+.searchBox{
+    height: 30px !important;
+    font-size: 12px;
+}
+
 .actionButton{
     margin: 0px;
     font-size: 11px !important;
@@ -44,6 +49,10 @@ body {
     text-align: center;
     margin: 5px;
     padding: 3px;
+}
+
+.sidebar-nav{
+    margin-bottom: 0px !important;
 }
 
 .navLeft{

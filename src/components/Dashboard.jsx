@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toggleDrains, toggleWaterLevel, toggleRains } from '../redux/action'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import Search from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import Button from 'react-bootstrap/Button';
-import Form from "react-bootstrap/Form";
+import Form from 'react-bootstrap/Form';
 import { ArrowRepeat, CaretDown, Display, Justify, Plus } from 'react-bootstrap-icons';
 import { ClearAll, Message, Restore } from '@mui/icons-material';
 
@@ -103,14 +103,14 @@ function Dashboard({latitude, longitude}) {
         <div className="sidebar border-end">
           <div className="sidebar-header">
             <div className="row">
-              <div className="col">
-                <Search/>
+              <div className="col-sm-1">
+                <SearchIcon/>
               </div>
-              <div className="col">
-                Tìm kiếm vị trí
+              <div className="col-sm-8">
+                <Form.Control className="searchBox" type='text' id="search" placeholder='Tìm kiếm vị trí' value=""></Form.Control>
               </div>
-              <div className="col text-right">
-                <Button><Justify/></Button>
+              <div className="col-sm-1 text-right">
+                <Button onClick={() => {setIsActive(!isActive)}}><Justify/></Button>
               </div>
             </div>
             <div className="row">
