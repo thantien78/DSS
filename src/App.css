@@ -40,10 +40,28 @@ body {
     height: 32px;
 }
 
+.actionButtonGroup{
+    text-align: center;
+    margin: 5px;
+    padding: 3px;
+}
+
 .navLeft{
     margin: 0px;
     padding: 2px !important;
     text-decoration: none;
     font-size: 12px !important;
     color: #969696;
+}
+
+.popupContent{
+    padding:5px;
+    border:1px solid #ced4da;
+    border-radius:5px;
+}
+
+.popupHeader{
+    padding:10px;
+    background-color:#007bff;
+    color:white
 }

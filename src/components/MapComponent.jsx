@@ -8,7 +8,8 @@ import { fetchUserData, fetchDrains, fetchWaterLevel, fetchRains } from '../redu
 import { useDispatch, useSelector } from 'react-redux'
 
 import { drainIcon, waterlevelIcon, rainIcon } from './Icons';
-
+// Modules ES
+import * as ReactDOMServer from 'react-dom/server';
 //load data
 import drainData from '../data/cong.json' 
 import waterlevelData from '../data/trammucnuoc.json'
@@ -33,20 +34,34 @@ const MapComponent = () => {
     const showWaterLevel = useSelector((state) => state.showWaterLevel)
     const showRains = useSelector((state) => state.showRains)
 
-    function onEachFeature(feature, layer) {
-      layer.on('click', function (e) {
+    const onEachFeature = (feature, layer) => {
+      const popupContent = ReactDOMServer.renderToString(
+        <Popup feature={feature} />
+      );
+      layer.bindPopup(popupContent);
+    };
     
-        getInfo(feature, layer);
-    
-        this.openPopup();
-      });
-    }
-
-    function getInfo(feature, layer) {
-      if (feature.properties) {
-        layer.bindPopup("<div style='padding:5px;border:1px solid #ced4da;border-radius:5px'><div style='padding:5px;background-color:#007bff;color:white'>THÔNG TIN TRẠM</div><div>ID:"+feature.properties.ID+"</div><div>LAT:"+feature.properties.LAT+"</div><div>LONG:"+feature.properties.LONG+"</div></div>");
+    const Popup = ({ feature }) => {
+      let popupContent;
+      if (feature.properties && feature.properties.ID) {
+        popupContent = feature.properties.popupContent;
       }
-    }
+    
+      return (
+        <div className='popupContent'>
+          <div className='popupHeader'>THÔNG TIN TRẠM</div>
+          <div>
+              <p><b>ID:</b> {feature.properties.ID}</p>                  
+          </div>
+          <div>
+              <p><b>LAT:</b> {feature.properties.LAT}</p>                  
+          </div>
+          <div>
+              <p><b>LONG:</b> {feature.properties.LONG}</p>                  
+          </div>
+        </div>       
+      );
+    };
 
     useEffect(() => {
       if(navigator.geolocation) {

@@ -41,7 +41,7 @@ const App = () => {
   return (
     <Provider store={configureStore}>
       <PersistGate persistor={persistor} loading={null}>
-        <Container fluid={true} className='px-1 overflow-hidden'>
+        <Container fluid={true} className='px-0 overflow-hidden'>
           <BrowserRouter>
            <Row>
               <Header></Header>
